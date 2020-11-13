@@ -1,4 +1,5 @@
 import 'dart:math';
+import 'dart:ui';
 
 import 'package:flutter/material.dart';
 
@@ -9,8 +10,36 @@ class CircularProgressPage extends StatefulWidget {
   _CircularProgressPageState createState() => _CircularProgressPageState();
 }
 
-class _CircularProgressPageState extends State<CircularProgressPage> {
-  double porcentaje = 0;
+class _CircularProgressPageState extends State<CircularProgressPage>
+    with SingleTickerProviderStateMixin {
+  AnimationController controller;
+
+  double porcentaje = 0.0;
+  double nuevoporcentaje = 0.0;
+
+  @override
+  void initState() {
+    super.initState();
+    controller = new AnimationController(
+      vsync: this,
+      duration: Duration(milliseconds: 800),
+    );
+
+    controller.addListener(() {
+      // print('valor controller ${controller.value}');
+      setState(() {
+        // LerpDouble es básicamente una forma de obtener un porcentaje
+        // basado en la diferencia de del total y el valor actual.
+        porcentaje = lerpDouble(porcentaje, nuevoporcentaje, controller.value);
+      });
+    });
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,10 +47,15 @@ class _CircularProgressPageState extends State<CircularProgressPage> {
         child: Icon(Icons.refresh),
         backgroundColor: Colors.pink,
         onPressed: () {
-          porcentaje += 10;
-          if (porcentaje > 100) {
+          porcentaje = nuevoporcentaje;
+          nuevoporcentaje += 10;
+
+          if (nuevoporcentaje > 100) {
+            nuevoporcentaje = 0;
             porcentaje = 0;
           }
+
+          controller.forward(from: 0.0);
           setState(() {});
         },
       ),
