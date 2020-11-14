@@ -89,6 +89,18 @@ class _MiRadialProgress extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
+    final rect = new Rect.fromCircle(
+      center: Offset(0, 0),
+      radius: 180,
+    );
+
+    //Agregando gradiente al arco
+    final Gradient gradiente = new LinearGradient(colors: <Color>[
+      Color(0xffC1012FF),
+      Color(0xff6D05E8),
+      Colors.red,
+    ]);
+
     //Circulo completado
     final x = size.width;
     final y = size.height;
@@ -107,6 +119,7 @@ class _MiRadialProgress extends CustomPainter {
     final paintArco = new Paint()
       ..strokeWidth = grosorArco
       ..color = colorPrimario
+      ..shader = gradiente.createShader(rect)
       ..style = PaintingStyle.stroke
       ..strokeCap = border;
     //Parte que se va llenando
