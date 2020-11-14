@@ -54,14 +54,18 @@ class _Dot extends StatelessWidget {
     //Cada vez que se cambie el slide se dispara el cambio de este valor
     final pageViewIndex = Provider.of<SliderModel>(context).currentPage;
 
-    return Container(
-        width: 12,
-        height: 12,
-        margin: EdgeInsets.symmetric(horizontal: 5),
-        decoration: BoxDecoration(
-          color: (pageViewIndex == index) ? Colors.blue : Colors.grey,
-          shape: BoxShape.circle,
-        ));
+    return AnimatedContainer(
+      duration: Duration(milliseconds: 200),
+      width: 12,
+      height: 12,
+      margin: EdgeInsets.symmetric(horizontal: 5),
+      decoration: BoxDecoration(
+        color: (pageViewIndex >= index - 0.5 && pageViewIndex < index + 0.5)
+            ? Colors.blue
+            : Colors.grey,
+        shape: BoxShape.circle,
+      ),
+    );
   }
 }
 
