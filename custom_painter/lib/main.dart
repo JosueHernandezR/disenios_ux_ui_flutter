@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'package:custom_painter/src/pages/slideshow.dart';
+import 'package:custom_painter/src/pages/slideshow_page.dart';
 
+//import 'package:custom_painter/src/labs/slideshow_page.dart';
 //import 'package:custom_painter/src/pages/graficas_circulares_page.dart';
 //import 'package:custom_painter/src/labs/circular_progress_page.dart';
 //import 'package:custom_painter/src/retos/cuadradoanimado_page.dart';
@@ -16,7 +17,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Diseños App',
-      home: SlideShowPage(),
+      home: SlideshowPage(),
     );
   }
 }
