@@ -35,12 +35,39 @@ class _PinterestMenuLocation extends StatelessWidget {
   }
 }
 
-class PinterestGrid extends StatelessWidget {
+class PinterestGrid extends StatefulWidget {
+  @override
+  _PinterestGridState createState() => _PinterestGridState();
+}
+
+class _PinterestGridState extends State<PinterestGrid> {
   final List<int> items = List.generate(200, (i) => i);
+  ScrollController controller = new ScrollController();
+  double scrollAnterior = 0;
+
+  @override
+  void initState() {
+    controller.addListener(() {
+      //Logica para mostrar menu
+      if (controller.offset > scrollAnterior) {
+        print('Ocultar menu');
+      } else {
+        print('Mostrar menu');
+      }
+    });
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     return StaggeredGridView.countBuilder(
+      controller: controller,
       crossAxisCount: 4,
       itemCount: items.length,
       itemBuilder: (BuildContext context, int index) => _PinterestItem(index),
