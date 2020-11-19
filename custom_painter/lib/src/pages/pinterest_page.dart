@@ -5,8 +5,32 @@ import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 class PinterestPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: PinterestMenu(),
+    return Scaffold(
+      body: Stack(
+        children: [
+          PinterestGrid(),
+          // Widgets para centrar el menu
+          _PinterestMenuLocation(),
+        ],
+      ),
+      //body: PinterestMenu(),
+    );
+  }
+}
+
+class _PinterestMenuLocation extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final width = MediaQuery.of(context).size.width;
+
+    return Positioned(
+      bottom: 30,
+      child: Container(
+        width: width,
+        child: Align(
+          child: PinterestMenu(),
+        ),
+      ),
     );
   }
 }
