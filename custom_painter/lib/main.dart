@@ -1,6 +1,8 @@
-import 'package:custom_painter/src/pages/emergency_page.dart';
 import 'package:flutter/material.dart';
 
+import 'package:custom_painter/src/pages/sliver_list_page.dart';
+
+//import 'package:custom_painter/src/pages/emergency_page.dart';
 //import 'package:custom_painter/src/pages/pinterest_page.dart';
 //import 'package:custom_painter/src/pages/slideshow_page.dart';
 //import 'package:custom_painter/src/labs/slideshow_page.dart';
@@ -18,7 +20,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Diseños App',
-      home: EmergencyPage(),
+      home: SliverPage(),
     );
   }
 }
